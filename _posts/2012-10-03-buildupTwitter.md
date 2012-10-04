@@ -1,6 +1,6 @@
 ---
 layout: page
-title: buildup Twitter with ( nodejs, express, mongodb, passport, jQeury )
+title: buildup Twitter with ( nodejs, express, mongodb, passport, jQuery )
 tagline: jQuery, ajax, express, jekyll
 ---
 
@@ -51,8 +51,8 @@ tagline: jQuery, ajax, express, jekyll
  - ejs의 사용법에 대해서도 다시한번 확인하는 기회였다.
 <list>에 <li>를 추가하면서, 반복적으로 작업을 해야 하는 부분이 있어, 
 
-	<ul id="tweetsList">
-	      <%if(twitFlag){ 
+	< ul id="tweetsList">
+	      < %if(twitFlag){ 
 		//console.log(twitInfo);
 		for (var i = 0, max = twitInfo.length; i < max; i++) {
 		  var username = twitInfo[i].username
@@ -60,7 +60,7 @@ tagline: jQuery, ajax, express, jekyll
 		  , twit = twitInfo[i].twit;
 		  //console.log(username);
 		%>
-		<li>
+		< li>
 		  <textarea rows="5" cols="50" name="contents"  >Writer : <%= username %>
 		  	Date : <%= date %>
 		  	Twit : <%= twit %>
@@ -80,8 +80,10 @@ tagline: jQuery, ajax, express, jekyll
 'jQuery' 이해하는 점이 가장 어려웠는데, ($ == qjuery)  
 '$'는 페이지의 리로딩 없이 브라우저 내에서 html의 element(요소)들의 attribute, value를 변경(대치) 할수도 있게 해준다.  
 특히  jquery의 ajax를 사용하면, 서버와의 통신결과를 바로 html에 적용함으로써, 동적으로 HTML을 제어할수 있게 된다.  
-ajax의 사용문법은 다음과같다 **링크[http://api.jquery.com/jQuery.ajax/](http://api.jquery.com/jQuery.ajax/)  
-처음엔 나도 이사이트를 아무리 봐도 뭔소린지 이해가 안됐는데, 나의 이해력으로는 이걸 어따 어떻게 써야할지 몰랐어서, 나중에 이글을 보는 나같은 개뉴비도 써먹을수 있도록 간단히 설명해보려고 한다.  
+ajax의 사용문법은 다음과같다
+**링크[http://api.jquery.com/jQuery.ajax/](http://api.jquery.com/jQuery.ajax/)  
+처음엔 나도 이사이트를 아무리 봐도 뭔소린지 이해가 안됐는데,
+나의 이해력으로는 이걸 어따 어떻게 써야할지 몰랐어서, 나중에 이글을 보는 나같은 개뉴비도 써먹을수 있도록 간단히 설명해보려고 한다.  
 
 
 ### jQuery.ajax( url [, settings] )
@@ -119,17 +121,26 @@ ajax의 사용문법은 다음과같다 **링크[http://api.jquery.com/jQuery.aj
 첫줄부터 보자면, jquery객체인 '$'가 **document**(현재 보이는 브라우저상의 내용)를 읽어온다. 그리고 다 읽어왔을때 (HTML이 모두 로드 됐을때부터 다음 함수 내용을 실행가능하다 라는 뜻)
 
 그래서, document의 정보를 $가 갖고있는데,  
-	$('#tweetForm').submit( function() {
+
+
+	$('#tweetForm').submit( function() {  
+	
+	
 input이 submit될때, 이벤트 처리를 위해 textarea객체가 submit눌렸을때 처리할 내용을 만들어 둔것이다. 만약 성공하지않으면 하는 처리를 만들어준다.
 
 jQuery의 .ajax() 방식과 .post() 방식으로 form의 submit 을 관리한다고 한다.
 예를들어 ref[http://www.jensbits.com/2009/10/23/jquery-ajax-and-jquery-post-form-submit-examples-with-coldfusion/#viewSource](http://www.jensbits.com/2009/10/23/jquery-ajax-and-jquery-post-form-submit-examples-with-coldfusion/#viewSource) 다음 사이트를 참고해보면 좋을수도^ㅡ^
 
-	$('#tweetForm').submit( function() {
-      	 var tweetText = $('#tweetText').val();
+
+	$('#tweetForm').submit( function() {  
+      	 var tweetText = $('#tweetText').val();  
+
 
 $에서 tweetForm의 정보를 .val 객체화하여 tweetText로 저장하도록 한다.
-.val()의 관련정보[http://api.jquery.com/val/](http://api.jquery.com/val/) Description: Get the current value of the first element in the set of matched elements. // 하지만 동일한 요소가있는 경우엔, 첫번째 요소의 값만을 취한다라고 한다.
+ .val()의 관련정보[http://api.jquery.com/val/](http://api.jquery.com/val/)   
+ Description: Get the current value of the first element in the set of matched elements. 
+ // 하지만 동일한 요소가있는 경우엔, 첫번째 요소의 값만을 취한다라고 한다.
+
 
 
 	$.ajax({
@@ -144,6 +155,7 @@ $에서 tweetForm의 정보를 .val 객체화하여 tweetText로 저장하도록
 		Twit : ' + data.data.twit + '</textarea></li>';
 		$('#tweetsList').prepend(html);
 	});
+
 
 ### jQuery.ajax  [http://api.jquery.com/jQuery.ajax/](http://api.jquery.com/jQuery.ajax/)
 
